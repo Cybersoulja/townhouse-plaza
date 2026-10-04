@@ -1,0 +1,16 @@
+[build]
+  command = "pnpm --filter @workspace/ai-town-fullstack... run build"
+  publish = "artifacts/ai-town-fullstack/dist/public"
+
+[build.environment]
+  # This is a Vite app, not Next.js. The @netlify/plugin-nextjs plugin is
+  # installed via the Netlify UI; this tells it to skip itself.
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
+  # Serve the app from the site root instead of the Replit sub-path.
+  BASE_PATH = "/"
+
+# SPA fallback for client-side routes
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
