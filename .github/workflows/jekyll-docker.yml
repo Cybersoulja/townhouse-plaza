@@ -19,8 +19,15 @@ jobs:
           -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
           jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
 
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
       - name: Deploy to Cloudflare Pages
+        if: github.event_name == 'push'
         uses: kitabisa/cloudflare-pages-action@v1.0.5
+        env:
+          npm_config_ignore_workspace_root_check: "true"
         with:
           api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           account-id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
