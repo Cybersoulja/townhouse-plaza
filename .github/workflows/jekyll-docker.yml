@@ -25,6 +25,8 @@ jobs:
 
       - name: Deploy to Cloudflare Pages
         uses: kitabisa/cloudflare-pages-action@v1.0.5
+        env:
+          npm_config_ignore_workspace_root_check: "true"
         with:
           api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           account-id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
