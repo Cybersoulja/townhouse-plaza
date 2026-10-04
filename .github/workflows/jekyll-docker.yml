@@ -24,6 +24,7 @@ jobs:
           version: 10
 
       - name: Deploy to Cloudflare Pages
+        if: github.event_name == 'push'
         uses: kitabisa/cloudflare-pages-action@v1.0.5
         env:
           npm_config_ignore_workspace_root_check: "true"
