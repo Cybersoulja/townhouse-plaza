@@ -1,0 +1,12 @@
+[build]
+  command = "pnpm --filter @workspace/ai-town-fullstack... run build"
+  publish = "artifacts/ai-town-fullstack/dist/public"
+
+[build.environment]
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
+  BASE_PATH = "/"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
